@@ -38,7 +38,7 @@ If you wich to test using a DBN trained on another network (freeway), you first 
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a scalar measure</h3>
-In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
+In this example, we want to train our cost-sensitive learning algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
 
 To do so, follow these steps:
 1. run proj_regression.m
@@ -62,7 +62,7 @@ The code :
 - displays the weights of the 1st convolutional layer filters.
 
 <h3>2. Example of training and testing our the oversampling algorithm and evaluating it with a scalar measure</h3>
-In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
+In this example, we want to train the oversampling algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
 
 To do so, follow these steps:
 1. run proj_regression.m
@@ -88,10 +88,31 @@ In this example, we want to train our algorithm on a regression task using the "
 To do so, follow these steps:
 1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l_p  〖Bal〗_n, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
 2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l_2  〖Bal〗_o, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
-3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data') to get test set predicted outputs for the undersampling technique l_2  〖Bal〗_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
+3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l_2  〖Bal〗_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
+4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l_2  〖Bal〗_n, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
 4. Go to the 'REC' folder and run rec_GMean_CWA.m
 
 The code :
-- displays a plot containing G-Mean REC curves of different techniques.
+- displays a plot of TPR REC curves of different techniques and outputs their AOCs.
+- displays a plot of TNR REC curves of different techniques and outputs their AOCs.
+- displays a plot of G-Mean REC curves of different techniques.
 
+PS: These plots are also saved in the "result_REC_plots" directory.
  
+The displayed result is:
+(1)Computing AOCs of the TNR RECs: 
+l_2 Unb. AOC = 1.144191
+l_2 Bal_u AOC = 2.764341
+l_2 Bal_o1 AOC = 1.619792
+l_P Unb. AOC = 1.860168
+(2)Computing AOCs of the TPR RECs: 
+l_2 Unb. AOC = 3.643603
+l_2 Bal_u AOC = 2.386789
+l_2 Bal_o1 AOC = 2.300064
+l_P Unb. AOC = 2.273694
+(3)Computing AOCs of GMean RECs for (1)l_2 Unb.,(2)l_2 Bal_u,(3)l_2 Bal_o,(4)l_P Unb.: 
+AOC of 1 = 2.620863
+AOC of 2 = 2.601916
+AOC of 3 = 1.973410
+AOC of 4 = 2.071313
+
