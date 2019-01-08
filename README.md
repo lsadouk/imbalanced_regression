@@ -39,12 +39,11 @@ In this example, we want to train our cost-sensitive learning algorithm on a reg
 To do so, follow these steps:
 1. run proj_regression.m
 2. select the following:
-- Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
-
-- Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution2
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
-- Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
-- Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
+     * Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
+     * Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution2
+     * Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
+     * Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
+     * Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
 <b>The displayed result is :</b>
 Lowest tgm error is 1.891 37
@@ -60,17 +59,12 @@ In this example, we want to train the oversampling algorithm on a regression tas
 To do so, follow these steps:
 1. run proj_regression.m
 2. select the following:
-- Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  o
-
-- Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution 0
-
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
-
-- Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
-
-- Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
-
-- Please select the undersampling rate 0.5, 1(default), 2: 1
+     * Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  o
+     * Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution 0
+     * Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
+     * Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
+     * Please choose the performance index: (mae)MAE / (rmse)RMSE / (w)Weighted MAE / (tgm)GME / (tcwa)CWE / (wm)WMAPE / (tm)Threshold MAPE 
+     * Please select the undersampling rate 0.5, 1(default), 2: 1
 
 <b>The displayed result is :</b>
 Lowest tgm error is 1.891 (37)
@@ -95,18 +89,18 @@ The code :
  
 The displayed result is:
 1. Computing AOCs of the TNR RECs: 
-- l_2 Unb. AOC = 1.144191
-- l_2 Bal_u AOC = 2.764341
-- l_2 Bal_o1 AOC = 1.619792
-- l_P Unb. AOC = 1.860168
+     * l_2 Unb. AOC = 1.144191
+     * l_2 Bal_u AOC = 2.764341
+     * l_2 Bal_o1 AOC = 1.619792
+     * l_P Unb. AOC = 1.860168
 2. Computing AOCs of the TPR RECs: 
-- l_2 Unb. AOC = 3.643603
-- l_2 Bal_u AOC = 2.386789
-- l_2 Bal_o1 AOC = 2.300064
-- l_P Unb. AOC = 2.273694
-3. Computing AOCs of GMean RECs for (1)l_2 Unb.,(2)l_2 Bal_u,(3)l_2 Bal_o,(4)l_P Unb.: 
-- AOC of 1 = 2.620863
-- AOC of 2 = 2.601916
-- AOC of 3 = 1.973410
-- AOC of 4 = 2.071313
+     * l_2 Unb. AOC = 3.643603
+     * l_2 Bal_u AOC = 2.386789
+     * l_2 Bal_o1 AOC = 2.300064
+     * l_P Unb. AOC = 2.273694
+3. Computing AOCs of GMean RECs for (1)l_2 Unb., (2)l_2 Bal_u, (3)l_2 Bal_o, (4)l_P Unb.: 
+     * AOC of 1 = 2.620863
+     * AOC of 2 = 2.601916
+     * AOC of 3 = 1.973410
+     * AOC of 4 = 2.071313
 
