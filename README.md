@@ -1,5 +1,4 @@
-# imbalanced_regression
-A cost-sensitive learning approach and evalutation strategies for handling regression under imbalanced domains
+# A cost-sensitive learning approach and evalutation strategies for handling regression under imbalanced domains
 
 Welcome. This repository contains the data and scripts comprising the 'A Novel Cost-sensitive Algorithm and New Evaluation Strategies for Regression in Imbalanced Domains'. 
 
@@ -16,7 +15,7 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Usage</h2>
 There are several use cases for this project:
 
-1. You can train and test the cost-sensitive learning approach by running the file 'proj_traffic_flow_prediction_10wStr.m'.
+1. You can train and test the cost-sensitive learning approach by running the file 'proj_regression.m'.
 
 You can choose to train and test the CNN (<b>see example 1 below </b>):
 - among different prediction time interval (5-, 10-, 15-, and 20-min forecasting)
@@ -38,70 +37,61 @@ If you wich to test using a DBN trained on another network (freeway), you first 
 - the HW-ExpS by y going into 'traffic_flow_code_HW-exp/' directory and running the file 'main.m'
 
 <h2>Examples for training and/or testing our models : </h2>
-<h3>1. Exampe of training and testing the CNN model:</h3>
-In this example, we want to predict the exact speed at 15-min forecasting (i.e., using regression) by training the CNN based on the probabilistic loss function. 
-
-The default data is the 'US101-North District 7' freeway (i.e., H101-North-D7) from september 1 to september 30 (2017) from 6AM to 8:55PM. 3/4th of the data is used for training and 1/4th is for testing.
-
-The measure of performance is RMSE which gives the error in miles/hour.
+<h3>1. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a scalar measure</h3>
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
 
 To do so, follow these steps:
-1. run proj_traffic_flow_prediction_10wStr.m
+1. run proj_regression.m
 2. select the following:
-- Please forecasting for which you wish to predict speed (1)for 5-min, (2)for 10-min, (3)...): 1
-- Please select the prediction type: (c)classification / (r)regression  r
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  4
+- Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
 
-- Please select the number of days (15, 21, 27, 30 or 59):  30
-- Please enter the loss (0)L2 loss, (1)P loss:  1
-- Please select the freeway: H101_North_D7 / H101_South_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7 H101_North_D7
+- Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution2
 
-The code will:
-- display a plot of the train RMSEs and test RMSEs per epoch.
-- output the lowest test RMSE.
-- display the weights of the 1st convolutional layer filters.
+- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
 
-<h3>2. Example of testing the DBN model:</h3>
-In this example, we want to predict the exact speed for network points of 'I5_North_D7' freeway at 15-min forecasting by testing/applying a DBN which was previously trained based on the probabilistic loss function using data of 'US101-North District 7' freeway (i.e., H101-North-D7) .
+- Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
 
-To do so, follow these steps:
-1. Go to 'traffic_flow_code_DBN' directory and run the file 'proj_traffic_flow_prediction_DBN.m'.
-2. select the following:
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  0
-
-- Please enter the loss (0)L2 loss, (1)P loss:  1
-
-- Please select the number of days (15, 21, 27, 30 or 59):  30
-
-- Enter prediction point:  3
-
-- Please select the testing freeway: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: I5_North_D7
-
-- Please select the input freeway used for training: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: H101_North_D7
+- Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
 <b>The displayed result is :</b>
-Classification error (testing):     5.53
+Lowest tgm error is 1.891 37
 
-<h3>3. Example of testing the CNN model:</h3>
-In this example, we want to predict the exact speed for network points of 'I5_North_D11' freeway at 15-min forecasting by testing/applying a CNN which was previously trained based on the probabilistic loss function using data of 'US101-North District 7' freeway (i.e., H101-North-D7) .
+The code :
+- outputs the lowest test error (in terms of the chosen scalar measure).
+- displays a plot of the objective function and error per epoch for both training and testing sets.
+- displays the weights of the 1st convolutional layer filters.
+
+<h3>2. Example of training and testing our the oversampling algorithm and evaluating it with a scalar measure</h3>
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The scalar measure used for evaluation is GME.
 
 To do so, follow these steps:
-
-1. Go to 'traffic_flow_code_CNN' directory and run the file 'proj_traffic_flow_prediction_10wStr.m'.
+1. run proj_regression.m
 2. select the following:
-- Please forecasting for which you wish to predict speed (1)for 5-min, (2)for 10-min, (3)...): 3
+- Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  o
 
-- Please select the prediction type: (c)classification / (r)regression  r
+- Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution 0
 
-- Please enter the loss (0)L2 loss, (1)P loss:  1
+- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
 
-- Please select the freeway used for training: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: H101_North_D7
+- Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
 
-- Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing):  0
+- Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
-- Please select the testing freeway: H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7: I5_North_D11
-
-- Please select the number of days (15, 21, 27, 30 or 59):  30
+- Please select the undersampling rate 0.5, 1(default), 2: 1
 
 <b>The displayed result is :</b>
-Lowest validation error is 3.821451 in epoch 1
+Lowest tgm error is 1.891 37
+
+<h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l_2  〖Bal〗_u, the oversampling technique l_2  〖Bal〗_o, the classical method l_2  〖Bal〗_n, and our cost-sensitive technique l_p  〖Bal〗_n are displayed.
+
+To do so, follow these steps:
+1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l_p  〖Bal〗_n, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
+2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l_2  〖Bal〗_o, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
+3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data') to get test set predicted outputs for the undersampling technique l_2  〖Bal〗_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
+4. Go to the 'REC' folder and run rec_GMean_CWA.m
+
+The code :
+- displays a plot containing G-Mean REC curves of different techniques.
+
+ 
