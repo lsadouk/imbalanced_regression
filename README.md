@@ -15,26 +15,20 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Usage</h2>
 There are several use cases for this project:
 
-1. You can train and test the cost-sensitive learning approach by running the file 'proj_regression.m'.
+1. You can train and test the the neural network by running the file 'proj_regression.m' (<b>see examples below </b>):
+- using the L2 Loss function (lambda=0), the probabilistic loss function with the normal distribution (lambda=1), or the probabilistic loss function with the normal distribution (lambda=2)
+- using no resampling strategy (n), the under-sampling technique (u), or the over-sampling technique (o)
+- on one of the following datasets: (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) 
 
-You can choose to train and test the CNN (<b>see example 1 below </b>):
-- among different prediction time interval (5-, 10-, 15-, and 20-min forecasting)
-- with either the L2 Loss function (lambda=0) or the probabilistic loss function (lambda=1)
-- on one of the following networks (freeways): H101_North_D7 / I5_North_D7 / I5_South_D7 / I5_North_D11 / I450_North_D7 / I210_West_D7 
-
-2. You can choose to test the CNN using a an available CNN which was already trained using traffic data of 'H101_North_D7' freeway (<b>see example 3 below</b>)
-If you wich to test using a CNN trained on another network (freeway), you first train the CNN using the desired network (use case 1) then call it for testing (use case 2).
-
-3. You can train and test Deep Belief Networks (DBNs) by going into 'traffic_flow_code_DBN/examples/' directory and running the file 'proj_traffic_flow_prediction_DBN.m'
-
-4. You can choose to test the DBN using a an available DBN which was already trained using traffic data of 'H101_North_D7' freeway (<b>see example 2 below</b>).
-If you wich to test using a DBN trained on another network (freeway), you first train the CNN using the desired network (use case 3) then call it for testing (use case 4).
+2. You can choose one of the evalutation measures below (scalar or graphical-based) in order to visualize and compare between the following 4 techniques: 
+--1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l_2  Unb.” in the article),
+--2 probabilistic method: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l_p  Unb.” in the article),
+--3 undersampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_u” in the article),
+--4 oversampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_o” in the article).
 
 
-<b>PS. If you want to compare CNN and DBN performances with existant methods, you can try :</b>
-- the Support Vector Machin (SVM) by going into 'traffic_flow_code_SVM/' directory and running the file 'proj_traffic_flow_prediction_SVM.m'
-- the ARIMA by y going into 'traffic_flow_code_ARIMA/' directory and running the file 'proj_traffic_flow_prediction_ARIMA.m'
-- the HW-ExpS by y going into 'traffic_flow_code_HW-exp/' directory and running the file 'main.m'
+- Scalar measures: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
+- Graphical-based measures: CWA REC curve ==> The TPR REC, TNR REC, and CWA REC curves are all displayed, and their corre  (<b>see example 1 and 2 below</b>)
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a scalar measure</h3>
