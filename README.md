@@ -102,18 +102,18 @@ PS: These plots are also saved in the "result_REC_plots" directory.
  
 The displayed result is:
 (1)Computing AOCs of the TNR RECs: 
-l_2 Unb. AOC = 1.144191
-l_2 Bal_u AOC = 2.764341
-l_2 Bal_o1 AOC = 1.619792
-l_P Unb. AOC = 1.860168
+- l_2 Unb. AOC = 1.144191
+- l_2 Bal_u AOC = 2.764341
+- l_2 Bal_o1 AOC = 1.619792
+- l_P Unb. AOC = 1.860168
 (2)Computing AOCs of the TPR RECs: 
-l_2 Unb. AOC = 3.643603
-l_2 Bal_u AOC = 2.386789
-l_2 Bal_o1 AOC = 2.300064
-l_P Unb. AOC = 2.273694
+- l_2 Unb. AOC = 3.643603
+- l_2 Bal_u AOC = 2.386789
+- l_2 Bal_o1 AOC = 2.300064
+- l_P Unb. AOC = 2.273694
 (3)Computing AOCs of GMean RECs for (1)l_2 Unb.,(2)l_2 Bal_u,(3)l_2 Bal_o,(4)l_P Unb.: 
-AOC of 1 = 2.620863
-AOC of 2 = 2.601916
-AOC of 3 = 1.973410
-AOC of 4 = 2.071313
+- AOC of 1 = 2.620863
+- AOC of 2 = 2.601916
+- AOC of 3 = 1.973410
+- AOC of 4 = 2.071313
 
