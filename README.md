@@ -21,10 +21,10 @@ There are several use cases for this project:
 - on one of the following datasets: (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) 
 
 2. You can choose one of the evalutation measures below (scalar or graphical-based) in order to visualize and compare between the following 4 techniques: 
---1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l_2  Unb.” in the article),
---2 probabilistic method: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l_p  Unb.” in the article),
---3 undersampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_u” in the article),
---4 oversampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_o” in the article).
+     * 1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l_2  Unb.” in the article),
+     * 2 probabilistic method: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l_p  Unb.” in the article),
+     * 3 undersampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_u” in the article),
+     * 4 oversampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_o” in the article).
 
 
 - Scalar measures: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
