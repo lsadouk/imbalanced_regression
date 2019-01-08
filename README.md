@@ -80,7 +80,8 @@ To do so, follow these steps:
 - Please select the undersampling rate 0.5, 1(default), 2: 1
 
 <b>The displayed result is :</b>
-Lowest tgm error is 1.891 37
+Lowest tgm error is 1.891 (37)
+Note that 37 stands for the epoch having the recorded lowest error.
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
 In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l_2  〖Bal〗_u, the oversampling technique l_2  〖Bal〗_o, the classical method l_2  〖Bal〗_n, and our cost-sensitive technique l_p  〖Bal〗_n are displayed.
