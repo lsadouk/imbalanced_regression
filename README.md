@@ -10,7 +10,7 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Initial requirements</h2>
 
 1. To the code, the environment needed is Matlab. So you need to install Matlab.
-2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'traffic_flow_code_CNN/' directory  by your own.
+2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'imbalanced_regression' directory by your own.
 
 <h2>Usage</h2>
 There are several use cases for this project:
@@ -28,7 +28,9 @@ There are several use cases for this project:
 
 
 - Scalar measures: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
-- Graphical-based measures: CWA REC curve ==> The TPR REC, TNR REC, and CWA REC curves are all displayed, and their corre  (<b>see example 1 and 2 below</b>)
+- Graphical-based measures: 
+     * G-Mean REC curve ==> The TPR REC, TNR REC, and CWA REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed  (<b>see example 1 and 2 below</b>)
+     * CWA REC curve ==> The TPR REC, TNR REC, and G-Mean REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed (<b>see example 3 below</b>)
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a scalar measure</h3>
@@ -40,11 +42,8 @@ To do so, follow these steps:
 - Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
 
 - Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution2
-
 - Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
-
 - Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
-
 - Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
 <b>The displayed result is :</b>
@@ -75,16 +74,16 @@ To do so, follow these steps:
 
 <b>The displayed result is :</b>
 Lowest tgm error is 1.891 (37)
-Note that 37 stands for the epoch having the recorded lowest error.
+> Note that 37 stands for the epoch having the recorded lowest error.
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
-In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l_2  〖Bal〗_u, the oversampling technique l_2  〖Bal〗_o, the classical method l_2  〖Bal〗_n, and our cost-sensitive technique l_p  〖Bal〗_n are displayed.
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l_2  〖Bal〗_u, the oversampling technique l_2  Bal_o, the classical method l_2 Bal_n, and our cost-sensitive technique l_p Bal_n are displayed.
 
 To do so, follow these steps:
-1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l_p  〖Bal〗_n, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
-2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l_2  〖Bal〗_o, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
-3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l_2  〖Bal〗_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
-4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l_2  〖Bal〗_n, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
+1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l_p Bal_n, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
+2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l_2 Bal_o, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
+3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l_2 Bal_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
+4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l_2 Bal_n, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
 4. Go to the 'REC' folder and run rec_GMean_CWA.m
 
 The code :
@@ -92,20 +91,20 @@ The code :
 - displays a plot of TNR REC curves of different techniques and outputs their AOCs.
 - displays a plot of G-Mean REC curves of different techniques.
 
-PS: These plots are also saved in the "result_REC_plots" directory.
+> PS: These plots are also saved in the "result_REC_plots" directory.
  
 The displayed result is:
-(1)Computing AOCs of the TNR RECs: 
+1. Computing AOCs of the TNR RECs: 
 - l_2 Unb. AOC = 1.144191
 - l_2 Bal_u AOC = 2.764341
 - l_2 Bal_o1 AOC = 1.619792
 - l_P Unb. AOC = 1.860168
-(2)Computing AOCs of the TPR RECs: 
+2. Computing AOCs of the TPR RECs: 
 - l_2 Unb. AOC = 3.643603
 - l_2 Bal_u AOC = 2.386789
 - l_2 Bal_o1 AOC = 2.300064
 - l_P Unb. AOC = 2.273694
-(3)Computing AOCs of GMean RECs for (1)l_2 Unb.,(2)l_2 Bal_u,(3)l_2 Bal_o,(4)l_P Unb.: 
+3. Computing AOCs of GMean RECs for (1)l_2 Unb.,(2)l_2 Bal_u,(3)l_2 Bal_o,(4)l_P Unb.: 
 - AOC of 1 = 2.620863
 - AOC of 2 = 2.601916
 - AOC of 3 = 1.973410
