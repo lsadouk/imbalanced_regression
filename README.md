@@ -45,8 +45,8 @@ To do so, follow these steps:
      * Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
      * Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
-<b>The displayed result is :</b>
-Lowest tgm error is 1.891 37
+<i>The displayed result is :</i>
+> Lowest tgm error is 1.891 37
 
 The code :
 - outputs the lowest test error (in terms of the chosen scalar measure).
@@ -87,12 +87,12 @@ The code :
 
 > PS: These plots are also saved in the "result_REC_plots" directory.
  
-The displayed result is:
-1. Computing AOCs of the TNR RECs: 
-     * l_2 Unb. AOC = 1.144191
-     * l_2 Bal_u AOC = 2.764341
-     * l_2 Bal_o1 AOC = 1.619792
-     * l_P Unb. AOC = 1.860168
+<i>The displayed result is:</i>
+> 1. Computing AOCs of the TNR RECs: 
+>      * l_2 Unb. AOC = 1.144191
+>      * l_2 Bal_u AOC = 2.764341
+>      * l_2 Bal_o1 AOC = 1.619792
+>      * l_P Unb. AOC = 1.860168
 2. Computing AOCs of the TPR RECs: 
      * l_2 Unb. AOC = 3.643603
      * l_2 Bal_u AOC = 2.386789
