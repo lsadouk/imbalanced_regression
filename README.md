@@ -66,9 +66,10 @@ To do so, follow these steps:
      * Please choose the performance index: (mae)MAE / (rmse)RMSE / (w)Weighted MAE / (tgm)GME / (tcwa)CWE / (wm)WMAPE / (tm)Threshold MAPE 
      * Please select the undersampling rate 0.5, 1(default), 2: 1
 
-<b>The displayed result is :</b>
-Lowest tgm error is 1.891 (37)
-> Note that 37 stands for the epoch having the recorded lowest error.
+<i>The displayed result is :</i>
+> Lowest tgm error is 1.891 (37)
+
+PS: Note that 37 stands for the epoch having the recorded lowest error.
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
 In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure REC<sub>G-Mean</sub> curve in which the REC<sub>G-Mean</sub> curves of the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, the classical method l<sub>2</sub> Bal<sub>n</sub>, and our cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub> are displayed.
@@ -85,7 +86,7 @@ The code :
 - displays a plot of REC<sub>TNR</sub> curves of different techniques and outputs their AOCs.
 - displays a plot of REC<sub>G-Mean</sub> curves of different techniques.
 
-> PS: These plots are also saved in the "result_REC_plots" directory.
+PS: These plots are also saved in the "result_REC_plots" directory.
  
 <i>The displayed result is:</i>
 > 1. Computing AOCs of the TNR RECs: 
@@ -93,14 +94,14 @@ The code :
 >      * l_2 Bal_u AOC = 2.764341
 >      * l_2 Bal_o1 AOC = 1.619792
 >      * l_P Unb. AOC = 1.860168
-2. Computing AOCs of the TPR RECs: 
-     * l_2 Unb. AOC = 3.643603
-     * l_2 Bal_u AOC = 2.386789
-     * l_2 Bal_o1 AOC = 2.300064
-     * l_P Unb. AOC = 2.273694
-3. Computing AOCs of GMean RECs for (1)l_2 Unb., (2)l_2 Bal_u, (3)l_2 Bal_o, (4)l_P Unb.: 
-     * AOC of 1 = 2.620863
-     * AOC of 2 = 2.601916
-     * AOC of 3 = 1.973410
-     * AOC of 4 = 2.071313
-
+> 2. Computing AOCs of the TPR RECs: 
+>      * l_2 Unb. AOC = 3.643603
+>      * l_2 Bal_u AOC = 2.386789
+>      * l_2 Bal_o1 AOC = 2.300064
+>      * l_P Unb. AOC = 2.273694
+> 3. Computing AOCs of GMean RECs for (1)l_2 Unb., (2)l_2 Bal_u, (3)l_2 Bal_o, (4)l_P Unb.: 
+>      * AOC of 1 = 2.620863
+>      * AOC of 2 = 2.601916
+>      * AOC of 3 = 1.973410
+>      * AOC of 4 = 2.071313
+***
