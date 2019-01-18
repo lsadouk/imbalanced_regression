@@ -1,4 +1,4 @@
-# A cost-sensitive learning approach and evalutation strategies for handling regression under imbalanced domains
+# A cost-sensitive learning approach and evaluation strategies for handling regression under imbalanced domains
 
 Welcome. This repository contains the data and scripts comprising the 'A Novel Cost-sensitive Algorithm and New Evaluation Strategies for Regression in Imbalanced Domains'. 
 
@@ -10,7 +10,8 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Initial requirements</h2>
 
 1. To the code, the environment needed is Matlab. So you need to install Matlab.
-2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'imbalanced_regression' directory by your own.
+2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'imbalanced
+regression' directory by your own.
 
 <h2>Usage</h2>
 There are several use cases for this project:
@@ -21,7 +22,7 @@ There are several use cases for this project:
 - on one of the following datasets: (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) 
 
 2. You can choose one of the evalutation measures below (scalar or graphical-based) in order to visualize and compare between the following 4 techniques: 
-     * 1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l_2  Unb.” in the article),
+     * 1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l<sub>2</sub> Unb.” in the article),
      * 2 probabilistic method: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l_p  Unb.” in the article),
      * 3 undersampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_u” in the article),
      * 4 oversampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_o” in the article).
