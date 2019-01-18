@@ -10,8 +10,7 @@ This readme is a brief overview and contains details for setting up and running 
 <h2>Initial requirements</h2>
 
 1. To the code, the environment needed is Matlab. So you need to install Matlab.
-2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'imbalanced
-regression' directory by your own.
+2. The MatConvNet Toolbox is needed in this project. It has already been downloaded and compiled for you. So, you don't need to install and compile MatConvNet. But, if you have your own version of MatConvNet, you can do so by replacing the MatConvNet folder within 'imbalanced_regression' directory by your own.
 
 <h2>Usage</h2>
 There are several use cases for this project:
@@ -30,8 +29,8 @@ There are several use cases for this project:
 , you can choose one of the evalutation measures below (scalar or graphical-based):
 - <b>Scalar measures</b>: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
 - <b>Graphical-based measures</b>: 
-     * G-Mean REC curve ==> The TPR REC, TNR REC, and CWA REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed  (<b>see example 1 and 2 below</b>)
-     * CWA REC curve ==> The TPR REC, TNR REC, and G-Mean REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed (<b>see example 3 below</b>)
+     * REC<sub>G-Mean</sub> curve ==> The REC<sub>TPR</sub>, REC<sub>TNR</sub>, and REC<sub>G-Mean</sub> curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed  (<b>see example 1 and 2 below</b>)
+     * REC<sub>CWA</sub> curve ==> The REC<sub>TPR</sub>, REC<sub>TNR</sub>, and REC<sub>CWA</sub> curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed (<b>see example 3 below</b>)
 
 <h2>Examples for training and/or testing our models : </h2>
 <h3>1. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a scalar measure</h3>
@@ -72,19 +71,19 @@ Lowest tgm error is 1.891 (37)
 > Note that 37 stands for the epoch having the recorded lowest error.
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
-In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, the classical method l<sub>2</sub> Bal<sub>n</sub>, and our cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub> are displayed.
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure REC<sub>G-Mean</sub> curve in which the REC<sub>G-Mean</sub> curves of the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, the classical method l<sub>2</sub> Bal<sub>n</sub>, and our cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub> are displayed.
 
 To do so, follow these steps:
-1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub>, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
-2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
-3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
-4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l<sub>2</sub> Bal<sub>n</sub>, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
+1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub>, which will be saved in "result_test_data/result_abalone_r_L2_n.mat".
+2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, which  will be saved in  "result_test_data/result_abalone_r_L0_o.mat".
+3. Follow the steps of Example 2 except (i) in the code, change the number of epochs as follows: opts.numEpochs =  140; and (ii) after running the code,  choose "u" instead of "o" in the entry 'method for handling imbalanced data'). As a result, test set predicted outputs for the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, are obtained and saved in "result_test_data/result_abalone_r_L0_u.mat".
+4. Follow the steps of Example 2 except (i) in the code, change the number of epochs as follows: opts.numEpochs =  100; and (ii) after running the code,  choose "n" instead of "o" in the entry 'method for handling imbalanced data'). As a result, test set predicted outputs for the classical method l<sub>2</sub> Bal<sub>n</sub> are obtained and saved in "result_test_data/result_abalone_r_L0_n.mat".
 4. Go to the 'REC' folder and run rec_GMean_CWA.m
 
 The code :
-- displays a plot of TPR REC curves of different techniques and outputs their AOCs.
-- displays a plot of TNR REC curves of different techniques and outputs their AOCs.
-- displays a plot of G-Mean REC curves of different techniques.
+- displays a plot of REC<sub>TPR</sub> curves of different techniques and outputs their AOCs.
+- displays a plot of REC<sub>TNR</sub> curves of different techniques and outputs their AOCs.
+- displays a plot of REC<sub>G-Mean</sub> curves of different techniques.
 
 > PS: These plots are also saved in the "result_REC_plots" directory.
  
