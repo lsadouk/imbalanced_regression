@@ -46,7 +46,9 @@ To do so, follow these steps:
      * Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
 
 <i>The displayed result is :</i>
-> Lowest tgm error is 1.891 37
+> Lowest tgm error is 1.891 30
+
+PS: Note that 30 stands for the epoch having the recorded lowest error.
 
 The code :
 - outputs the lowest test error (in terms of the chosen scalar measure).
@@ -67,9 +69,7 @@ To do so, follow these steps:
      * Please select the undersampling rate 0.5, 1(default), 2: 1
 
 <i>The displayed result is :</i>
-> Lowest tgm error is 1.891 (37)
-
-PS: Note that 37 stands for the epoch having the recorded lowest error.
+> Lowest tgm error is 1.925 (30)
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
 In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure REC<sub>G-Mean</sub> curve in which the REC<sub>G-Mean</sub> curves of the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, the classical method l<sub>2</sub> Bal<sub>n</sub>, and our cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub> are displayed.
