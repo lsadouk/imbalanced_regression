@@ -21,15 +21,15 @@ There are several use cases for this project:
 - using no resampling strategy (n), the under-sampling technique (u), or the over-sampling technique (o)
 - on one of the following datasets: (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) 
 
-2. You can choose one of the evalutation measures below (scalar or graphical-based) in order to visualize and compare between the following 4 techniques: 
-     * 1 classical method: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l<sub>2</sub> Unb.” in the article),
-     * 2 probabilistic method: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l_p  Unb.” in the article),
-     * 3 undersampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_u” in the article),
-     * 4 oversampling method: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l_2  〖Bal〗_o” in the article).
+2. In order to visualize and compare between the following 4 techniques: 
+     * <b>classical method</b>: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l<sub>2</sub> Unb.” in the article),
+     * <b>probabilistic method</b>: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l<sub>p</sub>  Unb.” in the article),
+     * <b>undersampling method</b>: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>u</sub>” in the article),
+     * <b>oversampling method</b>: training an MLP with the oversampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>o</sub>” in the article).
 
-
-- Scalar measures: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
-- Graphical-based measures: 
+, you can choose one of the evalutation measures below (scalar or graphical-based):
+- <b>Scalar measures</b>: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
+- <b>Graphical-based measures</b>: 
      * G-Mean REC curve ==> The TPR REC, TNR REC, and CWA REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed  (<b>see example 1 and 2 below</b>)
      * CWA REC curve ==> The TPR REC, TNR REC, and G-Mean REC curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed (<b>see example 3 below</b>)
 
@@ -41,7 +41,7 @@ To do so, follow these steps:
 1. run proj_regression.m
 2. select the following:
      * Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  n
-     * Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution2
+     * Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution 2
      * Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  10
      * Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) abalone
      * Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE tgm
@@ -72,13 +72,13 @@ Lowest tgm error is 1.891 (37)
 > Note that 37 stands for the epoch having the recorded lowest error.
 
 <h3>3. Example of training and testing our cost-sensitive learning regression algorithm and evaluating it with a graphical measure</h3>
-In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l_2  〖Bal〗_u, the oversampling technique l_2  Bal_o, the classical method l_2 Bal_n, and our cost-sensitive technique l_p Bal_n are displayed.
+In this example, we want to train our algorithm on a regression task using the "abalone" dataset. The measure used is the graphical measure G-Mean REC curve in which the G-Mean REC curve of the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, the classical method l<sub>2</sub> Bal<sub>n</sub>, and our cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub> are displayed.
 
 To do so, follow these steps:
-1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l_p Bal_n, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
-2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l_2 Bal_o, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
-3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l_2 Bal_u, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
-4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l_2 Bal_n, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
+1. Follow the steps of Example 1 in order to get test set predicted outputs for the cost-sensitive technique l<sub>p</sub> Bal<sub>n</sub>, which are saved within the file "result_abalone_r_L2_n.mat" of the folder "result_test_data".
+2. Follow the steps of Example 2 to get test set predicted outputs for the oversampling technique l<sub>2</sub> Bal<sub>o</sub>, which are saved within the file "result_abalone_r_L0_o.mat" of the folder "result_test_data".
+3. Follow the steps of Example 2 (except choose "u" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  140;) to get test set predicted outputs for the undersampling technique l<sub>2</sub> Bal<sub>u</sub>, which are saved within the file "result_abalone_r_L0_u.mat" of the folder "result_test_data".
+4. Follow the steps of Example 2 (except choose "n" instead of "o" in the 'method for handling imbalanced data' and change the number of epochs as follows: opts.numEpochs =  100;) to get test set predicted outputs for the classical method l<sub>2</sub> Bal<sub>n</sub>, which are saved within the file "result_abalone_r_L0_n.mat" of the folder "result_test_data".
 4. Go to the 'REC' folder and run rec_GMean_CWA.m
 
 The code :
