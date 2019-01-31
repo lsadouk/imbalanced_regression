@@ -4,7 +4,7 @@ Welcome. This repository contains the data and scripts comprising the 'A Novel C
 
 Included are the tools to allow you to easily run the code.
 
-This readme is a brief overview and contains details for setting up and running TFF with PLF. Please refer to the following:
+This readme is a brief overview and contains details for setting up and running the project. Please refer to the following:
 
 <h1>Running the code</h1><br/>
 <h2>Initial requirements</h2>
