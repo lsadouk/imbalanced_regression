@@ -24,11 +24,11 @@ There are several use cases for this project:
      * <b>classical method</b>: training an MLP with no resampling strategy and using the l2 loss function (denoted as “l<sub>2</sub> Unb.” in the article),
      * <b>probabilistic method</b>: training an MLP with no resampling strategy and using the lp probabilistic loss function (with either normal or kernel distribution) (referred to as “l<sub>p</sub>  Unb.” in the article),
      * <b>undersampling method</b>: training an MLP with the undersampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>u</sub>” in the article),
-     * <b>oversampling method</b>: training an MLP with the oversampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>o</sub>” in the article).
-     * <b>SmoteR method</b>: training an MLP with the SmoteR strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>smoter</sub>” in the article).
+     * <b>oversampling method</b>: training an MLP with the oversampling strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>o</sub>” in the article),
+     * <b>SmoteR method</b>: training an MLP with the SmoteR strategy and using the l2 loss function (denoted as “l<sub>2</sub>  Bal<sub>smoter</sub>” in the article),
      * <b>weighted method</b>: training an MLP with the weighting strategy based on the cost-sensitive loss function of Wang 1999 ("Wan, C., Wang, L., & Ting, K. (1999b). Introducing cost-sensitive neural networks. In Proceedings of the second international conference on information, communications and signal processing (pp. 1–4).) (referred to as “l<sub>weighted</sub>  Unb.” in the article),
 
-, you can choose one of the evalutation measures below (scalar or graphical-based):
+you can choose one of the evalutation measures below (scalar or graphical-based):
 - <b>Scalar measures</b>: Mean Absolute Error(mae), Root Mean Squared Error (rmse), Geometric-Mean Error GME (tgm), Class-Weighted Error CWE (tcwa) (<b>see example 1 and 2 below</b>)
 - <b>Graphical-based measures</b>: 
      * REC<sub>G-Mean</sub> curve ==> The REC<sub>TPR</sub>, REC<sub>TNR</sub>, and REC<sub>G-Mean</sub> curves are all displayed, and their corresponding AOCs for each of the 4 techniques are displayed  (<b>see example 1 and 2 below</b>)
