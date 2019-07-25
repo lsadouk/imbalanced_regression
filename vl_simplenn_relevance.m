@@ -157,6 +157,7 @@ opts.backPropDepth = +inf ;
 %opts.lambda = 0;
 opts.pd_model = [];
 opts.pd_model_max = 1;
+opts.weighting_type = '';
 opts = vl_argparse(opts, varargin);
 
 n = numel(net.layers) ;
@@ -227,7 +228,8 @@ for i=1:n
     case 'euclideanloss'
       pd_model = opts.pd_model;
       pd_model_max= opts.pd_model_max;
-      [res(i+1).x, ~]= vl_nneuclideanloss_relevance(res(i).x, l.class, pd_model,pd_model_max);
+      weighting_type = opts.weighting_type;
+      [res(i+1).x, ~]= vl_nneuclideanloss_relevance(res(i).x, l.class, pd_model,pd_model_max, weighting_type);
     case 'sigmoidIntegralloss'
       res(i+1).x = vl_nnsigmoidIntegralloss(res(i).x, l.class);
     case 'relu'
@@ -371,7 +373,8 @@ if doder
       case 'euclideanloss'
         pd_model = opts.pd_model;
         pd_model_max= opts.pd_model_max;
-        [res(i).dzdx, ~] = vl_nneuclideanloss_relevance(res(i).x, l.class, pd_model,pd_model_max, res(i+1).dzdx);
+        weighting_type = opts.weighting_type;
+        [res(i).dzdx, ~] = vl_nneuclideanloss_relevance(res(i).x, l.class, pd_model,pd_model_max,weighting_type, res(i+1).dzdx);
       case 'sigmoidIntegralloss'
          res(i).dzdx = vl_nnsigmoidIntegralloss(res(i).x, l.class, res(i+1).dzdx);
       case 'relu'

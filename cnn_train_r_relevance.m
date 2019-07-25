@@ -40,6 +40,7 @@ opts.prediction_type = 'r';
 %opts.lambda = 0; % by default L2 loss function (and not probabilistic loss function)
 opts.pd_model = [];
 opts.pd_model_max = [];
+opts.weighting_type = '';
 opts.pd_model_pmeasure = [];
 opts.pd_model_max_pmeasure = 0;
 opts.pIndex = 'm' ; % by default, set to MAE (m)
@@ -346,7 +347,8 @@ for t=1:opts.batchSize:numel(subset)
                       'sync', opts.sync, ...
                       'cudnn', opts.cudnn, ...
                       'pd_model', opts.pd_model, ...
-                      'pd_model_max', opts.pd_model_max) ; % 'lambda', opts.lambda
+                      'pd_model_max', opts.pd_model_max, ...
+                      'weighting_type', opts.weighting_type) ; % 'lambda', opts.lambda
 
 %     % accumulate training errors
 %     error = sum([error, [...

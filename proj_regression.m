@@ -4,20 +4,20 @@ function [net, info] = proj_regression()
 
 run matconvnet-1.0-beta16/matlab/vl_setupnn ; %run('matconvnet-1.0-beta16', 'matlab', 'vl_setupnn.m') ;
 
-opts.learningRate = 0.01; % % TO BE CHOSEN BASED ON THE DATASET
+opts.learningRate = 0.001; % % TO BE CHOSEN BASED ON THE DATASET
 opts.continue = true;
 opts.gpus = [] ; %GPU support is off by default
 
 %% Inputs
-opts.method =input('Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling, (n)nothing  ', 's');
-opts.lambda =input('Please enter the loss (0)L2 loss, (1)P loss w. normal distribution, (2)P loss w. kernel distribution ');
+opts.method =input('Please select the method for handling imbalanced data (o)data pre-processing: Oversampling, (u)data pre-processing: Undersampling,(s)data pre-processing: Smoter (o2_u0.5), (n)nothing  ', 's');
+opts.lambda =input('Please enter the loss (0)L2 loss, (1)P loss w. NDR, (2)P loss w. KDR, (3) Weighted loss w. KDR');
 kfold =input('Please enter the k-fold (k-1 for training & 1 for testing)_(0 for testing)  ');% kfold=0 for TESTING and kfold = 10 for TRAINING
 opts.dataset =input('Please select the dataset (abalone)/(accel)/(heat)/(cpuSm)/(bank8FM)/(parkinson)/(dAiler) ', 's');
 opts.pIndex =input('Please choose the performance index: (mae)MAE / (rmse)RMSE /(w)Weighted MAE/(tgm)GME/(tcwa)CWE/(wm)WMAPE/(tm)Threshold MAPE ','s'); %deleted(g)GMRAE
 
 %% Where trained outputs nets are saved
 opts.expDir = fullfile('result_nets',strcat('data_', opts.dataset,'_r', ...
-     int2str(opts.lambda),'_',opts.pIndex, '_', opts.method,'newLoss' )) ; 
+     int2str(opts.lambda),'_',opts.method,'_',opts.pIndex, '_', opts.method,'newLoss' )) ; 
 
 %% -------------------------------------------------------------------
 %                                                         Prepare data
@@ -34,7 +34,7 @@ end
 %                                                         architecture
 % --------------------------------------------------------------------
 % specify the network architecture w/ cnn_init function
-opts.numEpochs =  30; % TO BE CHOSEN BASED ON THE DATASET
+opts.numEpochs =  141; % TO BE CHOSEN BASED ON THE DATASET
 nb_features = size(imdb.images.data,1); % # of attributes
 net = cnn_init_regression(nb_features, opts.lambda);  
 
@@ -57,7 +57,7 @@ opts.pd_model_pmeasure = fitdist(label(:),'kernel'); %,'Kernel', 'epanechnikov')
 pdf_model = pdf(opts.pd_model_pmeasure,label);
 opts.pd_model_max_pmeasure = max(pdf_model);
 
-if opts.lambda == 1 || opts.lambda == 2 % normal or kernel distribution
+if opts.lambda == 1 || opts.lambda == 2 || opts.lambda == 3 % normal or kernel distribution =>(NDR or KDR)
     if(length(index) > 2000) % was 20000
         label = imdb.images.labels(index);
         randNdx=randperm(length(label)); 
@@ -66,30 +66,38 @@ if opts.lambda == 1 || opts.lambda == 2 % normal or kernel distribution
     end % else do nothing
 end
 
-if opts.lambda == 2 % kernel distribution
+if opts.lambda == 2 || opts.lambda == 3 % kernel distribution => KDR
     pd_model = fitdist(label(:),'kernel'); % options:'Kernel','epanechnikov'
     pdf_model = pdf(pd_model,label);
     pd_model_max = max(pdf_model);
-elseif opts.lambda == 1 % normal distribution into the cost C
+    if opts.lambda == 2
+        weighting_type = 'addition'; % our P loss
+    else %opts.lambda == 3
+        weighting_type = 'multiplication'; % weighted P loss
+    end
+elseif opts.lambda == 1 % normal distribution with KDR
     pd_model = fitdist(label(:),'Normal');
     pdf_model = pdf(pd_model,label);
     pd_model_max = max(pdf_model);
-    %pd_model_max = 1;
+    weighting_type = 'addition'; % our P loss
 else % no distribution -> no cost C
     pd_model = [];
     pd_model_max = [];
+    weighting_type = ''; 
 end
 
 opts.pd_model = pd_model; % pd for the chosen model (kernel, normal or nothing[])
 opts.pd_model_max = pd_model_max; % maximum value of pdf for the chosen model
+opts.weighting_type = weighting_type; % either 'additive weighting factor' or 'multiplied weighting factor'
 
 % --------------------------------------------------------------------
 %                                                      Balance data if
 %                                                      selected by user
 % --------------------------------------------------------------------
-if(isequal(opts.method,'o') || isequal(opts.method,'u'))
+if(isequal(opts.method,'o') || isequal(opts.method,'u')|| isequal(opts.method,'s'))
     imdb = balance_data(opts.method, opts, imdb, opts.dataset);
 end
+
 
 %% -------------------------------------------------------------------
 %                                                                Train
@@ -118,16 +126,16 @@ opts.errorFunction = 'euclideanloss';
 if(isequal(opts.pIndex,'tgm'))
     error_per_epoch = sqrt(info.val.error(1,:) ./ info.val.relevance(1,:) .* info.val.error(2,:) ./ info.val.relevance(2,:));
 elseif(isequal(opts.pIndex,'tcwa'))
-    w= 2/3;
-    %error_per_epochgm = sqrt(info.val.error(1,:) ./ info.val.relevance(1,:) .* info.val.error(2,:) ./ info.val.relevance(2,:)); % to be deleted later
-    error_per_epoch = w .* info.val.error(1,:) ./ info.val.relevance(1,:) + (1-w) .* info.val.error(2,:) ./ info.val.relevance(2,:);
+       w= 2/3;
+        error_per_epochgm = sqrt(info.val.error(1,:) ./ info.val.relevance(1,:) .* info.val.error(2,:) ./ info.val.relevance(2,:)); % to be deleted later
+        error_per_epoch = w .* info.val.error(1,:) ./ info.val.relevance(1,:) + (1-w) .* info.val.error(2,:) ./ info.val.relevance(2,:);
 else
     error_per_epoch =info.val.error(1,:);
 end
-%[minmgm,min_indgm] = min(error_per_epochgm); %to be deleted
+[minmgm,min_indgm] = min(error_per_epochgm); %to be deleted
 [minm,min_ind] = min(error_per_epoch);
 
-%fprintf('Lowest gme error is %f %d\n',minmgm, min_indgm) %to be deleted
+fprintf('Lowest gme error is %f %d\n',minmgm .*s_factor, min_indgm) %to be deleted
 fprintf('Lowest %s error is %f %d\n',opts.pIndex,minm .*s_factor, min_ind)
     
 end
